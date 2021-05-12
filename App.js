@@ -11,53 +11,20 @@ const App = () => {
             Here are some boxes of different colours
           </Text>
         </View>
-        <View style={[styles.cyan, styles.colourContainer]}>
-          <Text style={styles.white}>Cyan #2aa198</Text>
-        </View>
-        <View style={[styles.blue, styles.colourContainer]}>
-          <Text style={styles.white}>Blue #268bd2</Text>
-        </View>
-        <View style={[styles.magenta, styles.colourContainer]}>
-          <Text style={styles.white}>Magenta #d33682</Text>
-        </View>
-        <View style={[styles.orange, styles.colourContainer]}>
-          <Text style={styles.white}>Orange #cb4b16</Text>
-        </View>
-        <ColourBox />
+        <ColourBox colourName="Cyan" colourHex="#2aa198" />
+        <ColourBox colourName="Blue" colourHex="#268bd2" />
+        <ColourBox colourName="Magenta" colourHex="#d33682" />
+        <ColourBox colourName="Orange" colourHex="#cb4b16" />
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  white: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
   title: {
     fontWeight: 'bold',
-    fontSize: 18,
-  },
-  titleContainer: {
-    alignItems: 'flex-start',
-  },
-  cyan: {
-    backgroundColor: '#2aa198',
-  },
-  blue: {
-    backgroundColor: '#268bd2',
-  },
-  magenta: {
-    backgroundColor: '#d33682',
-  },
-  orange: {
-    backgroundColor: '#cb4b16',
-  },
-  colourContainer: {
-    alignItems: 'center',
-    paddingVertical: 5,
-    marginVertical: 3,
-    justifyContent: 'center',
+    fontSize: 17,
+    paddingBottom: 10,
   },
   container: {
     paddingHorizontal: 20,
