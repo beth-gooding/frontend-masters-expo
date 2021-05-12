@@ -30,9 +30,11 @@ const App = () => {
 const styles = StyleSheet.create({
   white: {
     color: 'white',
+    fontWeight: 'bold',
   },
   title: {
     fontWeight: 'bold',
+    fontSize: 18,
   },
   titleContainer: {
     alignItems: 'flex-start',
@@ -53,14 +55,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 5,
     marginVertical: 3,
+    justifyContent: 'center',
   },
   container: {
-    marginHorizontal: 20,
+    paddingHorizontal: 20,
     flex: 1,
   },
   safeArea: {
     flex: 1,
-    marginTop: 50,
+    paddingTop: 50,
   },
 });
 
