@@ -28,13 +28,11 @@ const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={[styles.container]}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Solarized</Text>
-        </View>
         <FlatList
           data={COLORS}
           renderItem={renderItem}
           keyExtractor={(item) => item.colorName}
+          ListHeaderComponent={<Text style={styles.title}>Solarized</Text>}
         />
       </View>
     </SafeAreaView>
