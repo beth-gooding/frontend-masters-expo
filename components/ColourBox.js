@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     marginVertical: 3,
     justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    elevation: 10,
   },
 });
 
