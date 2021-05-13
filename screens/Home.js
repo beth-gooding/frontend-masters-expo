@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import ColourPreview from '../components/ColourPreview';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
-const COLORS = [
+const SOLARIZED = [
   { colorName: 'Base03', hexCode: '#002b36' },
   { colorName: 'Base02', hexCode: '#073642' },
   { colorName: 'Base01', hexCode: '#586e75' },
@@ -37,12 +36,28 @@ const FRONTEND_MASTERS = [
   { colorName: 'Orange', hexCode: '#e66225' },
 ];
 
-const COLOUR_PALETTES = [COLORS, RAINBOW, FRONTEND_MASTERS];
+const COLOUR_PALETTES = [
+  { paletteName: 'Solarized', colours: SOLARIZED },
+  { paletteName: 'Rainbow', colours: RAINBOW },
+  { paletteName: 'Frontend Masters', colours: FRONTEND_MASTERS },
+];
 
 const Home = ({ navigation }) => {
   return (
     <View>
-      <ColourPreview colourPalettes={COLOUR_PALETTES} />
+      <FlatList
+        data={COLOUR_PALETTES}
+        keyExtractor={(item) => item.paletteName}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Colour Palette', item);
+            }}
+          >
+            <Text>{item.paletteName}</Text>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };
