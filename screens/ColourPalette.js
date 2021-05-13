@@ -9,7 +9,7 @@ const ColourPalette = ({ route }) => {
   return (
     <View style={[styles.container]}>
       <FlatList
-        data={route.params.colours}
+        data={route.params.colors}
         renderItem={renderItem}
         keyExtractor={(item) => item.colorName}
         ListHeaderComponent={
