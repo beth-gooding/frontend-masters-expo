@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, FlatList } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import ColourBox from './components/ColourBox';
 
 const COLORS = [
@@ -26,16 +27,18 @@ const App = () => {
     <ColourBox colourName={item.colorName} colourHex={item.hexCode} />
   );
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={[styles.container]}>
-        <FlatList
-          data={COLORS}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.colorName}
-          ListHeaderComponent={<Text style={styles.title}>Solarized</Text>}
-        />
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={[styles.container]}>
+          <FlatList
+            data={COLORS}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.colorName}
+            ListHeaderComponent={<Text style={styles.title}>Solarized</Text>}
+          />
+        </View>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
