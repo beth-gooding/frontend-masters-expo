@@ -13,12 +13,6 @@ import {
 
 import COLORS from '../colours';
 
-const COLORS2 = [
-  { colorName: 'AliceBlue', hexCode: '#F0F8FF' },
-  { colorName: 'AntiqueWhite', hexCode: '#FAEBD7' },
-  { colorName: 'Aqua', hexCode: '#00FFFF' },
-];
-
 const ColourPaletteModal = ({ navigation }) => {
   const [colourPaletteName, setColourPaletteName] = useState('');
   const [selectedColours, setSelectedColours] = useState([]);
