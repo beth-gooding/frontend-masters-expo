@@ -21,20 +21,34 @@ const COLORS2 = [
 
 const ColourPaletteModal = ({ navigation }) => {
   const [colourPaletteName, setColourPaletteName] = useState('');
+  const [selectedColours, setSelectedColours] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
   const toggleSwitch = () => setIsSelected((previousState) => !previousState);
+  const handleValueChange = useCallback((value, color) => {
+    if (value === true) {
+      setSelectedColours((colors) => [...colors, color]);
+    } else {
+      setSelectedColours((colors) =>
+        colors.filter(
+          (selectedColor) => color.colorName !== selectedColor.colorName,
+        ),
+      );
+    }
+  }, []);
   const handleSubmit = useCallback(() => {
     if (!colourPaletteName) {
       Alert.alert('Please enter a palette name');
+    } else if (selectedColours.length < 3) {
+      Alert.alert('Please choose at least three colours');
     } else {
       navigation.navigate('Home', {
         newColourPalette: {
           paletteName: colourPaletteName,
-          colors: [],
+          colors: selectedColours,
         },
       });
     }
-  }, [navigation, colourPaletteName]);
+  }, [colourPaletteName, selectedColours, navigation]);
   return (
     <View style={styles.container}>
       <Text>Name your colour palette</Text>
@@ -45,7 +59,7 @@ const ColourPaletteModal = ({ navigation }) => {
       />
       <FlatList
         style={styles.list}
-        data={COLORS2}
+        data={COLORS}
         keyExtractor={(item) => item.colorName}
         renderItem={({ item }) => (
           <View style={styles.switchContainer}>
@@ -54,8 +68,14 @@ const ColourPaletteModal = ({ navigation }) => {
               trackColor={{ false: 'grey', true: 'green' }}
               thumbColor={isSelected ? 'white' : 'white'}
               ios_backgroundColor="white"
-              onValueChange={toggleSwitch}
-              value={isSelected}
+              onValueChange={(selected) => {
+                handleValueChange(selected, item);
+              }}
+              value={
+                !!selectedColours.find(
+                  (color) => color.colorName === item.colorName,
+                )
+              }
             />
           </View>
         )}
