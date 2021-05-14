@@ -16,8 +16,6 @@ import COLORS from '../colours';
 const ColourPaletteModal = ({ navigation }) => {
   const [colourPaletteName, setColourPaletteName] = useState('');
   const [selectedColours, setSelectedColours] = useState([]);
-  const [isSelected, setIsSelected] = useState(false);
-  const toggleSwitch = () => setIsSelected((previousState) => !previousState);
   const handleValueChange = useCallback((value, color) => {
     if (value === true) {
       setSelectedColours((colors) => [...colors, color]);
@@ -60,7 +58,6 @@ const ColourPaletteModal = ({ navigation }) => {
             <Text>{item.colorName}</Text>
             <Switch
               trackColor={{ false: 'grey', true: 'green' }}
-              thumbColor={isSelected ? 'white' : 'white'}
               ios_backgroundColor="white"
               onValueChange={(selected) => {
                 handleValueChange(selected, item);
