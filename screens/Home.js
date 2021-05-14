@@ -10,7 +10,10 @@ import {
 } from 'react-native';
 import PalettePreview from '../components/PalettePreview';
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, route }) => {
+  const newColourPalette = route.params
+    ? route.params.newColourPalette
+    : undefined;
   const [colourPalettes, setColourPalettes] = useState([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -35,6 +38,12 @@ const Home = ({ navigation }) => {
       setIsRefreshing(false);
     }, 4000);
   }, []);
+
+  useEffect(() => {
+    if (newColourPalette) {
+      setColourPalettes((palettes) => [newColourPalette, ...palettes]);
+    }
+  }, [newColourPalette]);
 
   return (
     <FlatList
