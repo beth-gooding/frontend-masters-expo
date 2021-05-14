@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   Switch,
   TouchableOpacity,
   FlatList,
+  Alert,
 } from 'react-native';
 
 const COLORS = [
@@ -164,6 +165,11 @@ const ColourPaletteModal = ({ navigation }) => {
   const [colourPaletteName, setColourPaletteName] = useState('');
   const [isSelected, setIsSelected] = useState(false);
   const toggleSwitch = () => setIsSelected((previousState) => !previousState);
+  const handleSubmit = useCallback(() => {
+    if (!colourPaletteName) {
+      Alert.alert('Please enter a palette name');
+    }
+  }, [colourPaletteName]);
   return (
     <View style={styles.container}>
       <Text>Name your colour palette</Text>
@@ -192,6 +198,7 @@ const ColourPaletteModal = ({ navigation }) => {
       <TouchableOpacity
         style={styles.submit}
         onPress={() => {
+          handleSubmit();
           navigation.navigate('Home');
         }}
       >
@@ -205,6 +212,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     backgroundColor: 'white',
+    flex: 1,
   },
   switchContainer: {
     justifyContent: 'center',
@@ -212,13 +220,15 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: 'grey',
-    padding: 5,
+    padding: 10,
     marginBottom: 20,
+    borderRadius: 5,
   },
   submit: {
     backgroundColor: 'teal',
     padding: 10,
     borderRadius: 5,
+    marginBottom: 30,
   },
   submitText: {
     color: 'white',
